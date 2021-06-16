@@ -8,7 +8,7 @@ import datetime as dt
 
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, LSTM
+from tensorflow.keras.layers import Dense, Dropout, LSTM, GRU
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 
 
@@ -46,10 +46,13 @@ x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
 def LSTM_model():
     model = Sequential()
 
-    model.add(LSTM(units=50, return_sequences=True, input_shape=(x_train.shape[1], 1)))
+    model.add(GRU(units=50, return_sequences=True, input_shape=(x_train.shape[1], 1)))
     model.add(Dropout(0.2))
 
-    model.add(LSTM(units=50))
+    model.add(GRU(units=50, return_sequences=True))
+    model.add(Dropout(0.2))
+
+    model.add(GRU(units=50))
     model.add(Dropout(0.2))
 
     model.add(Dense(units=1))
