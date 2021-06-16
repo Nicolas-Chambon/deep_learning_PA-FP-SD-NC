@@ -75,7 +75,7 @@ checkpointer = ModelCheckpoint(filepath = 'weights_best.hdf5',
 
 model.fit(x_train,
           y_train,
-          epochs=30,
+          epochs=35,
           batch_size = 32,
           callbacks = [checkpointer])
 
