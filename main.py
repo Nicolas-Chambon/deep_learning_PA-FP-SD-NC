@@ -64,7 +64,8 @@ def LSTM_model():
 model = LSTM_model()
 model.summary()
 model.compile(optimizer='adam',
-              loss='mean_squared_error')
+              loss='mean_squared_error',
+              metrics='accuracy')
 
 # Define callbacks
 
@@ -75,7 +76,7 @@ checkpointer = ModelCheckpoint(filepath = 'weights_best.hdf5',
 
 model.fit(x_train,
           y_train,
-          epochs=35,
+          epochs=40,
           batch_size = 32,
           callbacks = [checkpointer])
 
